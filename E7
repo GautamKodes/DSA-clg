@@ -1,0 +1,31 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        int slen = s.length()-1;
+        int tlen = t.length()-1;
+        if(slen != tlen){
+            return false;
+        } else if (slen == tlen){
+            HashMap <String, Integer> map = new HashMap<>();
+            for (int i =0; i<=slen; i++){
+                String now = Character.toString(s.charAt(i));
+                if (map.get(now) == null){
+                    map.put(now, 1);
+                } else {
+                    Integer current =  map.get(now)+1;
+                    map.put(now, current);
+                }
+            }
+
+            for (int i =0; i<=tlen; i++){
+                String now = Character.toString(t.charAt(i));
+                if (map.get(now) == null || map.get(now)==0){
+                    return false;
+                } else {
+                    Integer current = map.get(now)-1;
+                    map.put(now, current);
+                }
+            }
+        }
+        return true;
+    }
+}
