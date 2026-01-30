@@ -1,0 +1,26 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+        int len = digits.length-1;
+        boolean carry = true;
+        int last = len;
+        while (carry){
+            if (digits[last] != 9){
+                digits[last] +=1;
+                carry = false;
+            } else if (digits[last] == 9 && last==0){
+                int[] newdigits = new int[len+2];
+                int newlen = len+1;
+                newdigits[0] = 1;
+                newdigits[1] = 0;
+                for (int i=2; i<=newlen; i++){
+                    newdigits[i] = digits[i-1];
+                }
+                return newdigits;
+            } else {
+                digits[last] = 0;
+                last--;
+            }
+        }
+        return digits;
+    }
+}
